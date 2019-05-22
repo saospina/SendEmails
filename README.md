@@ -1,6 +1,6 @@
 # SendEmails
 
-This project was generated for send emails from Gmail using Protractor
+This project was generated for sending emails from Gmail using Protractor
 
 ## Setup
 
@@ -12,7 +12,7 @@ Run `npm install -g protractor` to install Protractor globally. Then, run `protr
 
 Run `webdriver-manager update`. The webdriver-manager is a helper tool to easily get an instance of a Selenium Server running.
 
-### Web Driver
+### Running the server
 
 To start up the server, run `webdriver-manager start`.
 
