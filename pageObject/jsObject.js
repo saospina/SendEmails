@@ -4,6 +4,8 @@ function getSearch() {
         browser.get('https://www.google.com/');
     };
     this.submit  = element(by.linkText("Acceder"));
+    this.input = element(by.css("input[class='whsOnd zHQkBf']"));
+    this.next = element(by.css("content[class='CwaK9']"));
 
     
 
