@@ -19,21 +19,34 @@ describe('Login into Gmail', function () {
     var item = require('../pageObject/jsObject.js')
     it('should login with user and pass', function () {
         item.searchItem.click();
-        item.submit.click().then(function (handles) {
-            popUpHandle = handles[1];
-            var handle = browser.switchTo().window(popUpHandle);
-            handle = browser.getWindowHandle();
-            expect(handle).toEqual(popUpHandle);
-            browser.driver.executeScript('window.focus();');
-        });
-        /* .then(function () {
-            browser.getAllWindowHandles().then(function (handles) {
-                browser.switchTo().window(handles[1]);
-                browser.getTitle().then(function (title) {
-                    console.log("Title is : " + title);
+        item.submit.click().then(function () {
+            browser.getTitle().then(function (title) {
+                console.log('title before: ' + title);
+            });
+             browser.getAllWindowHandles().then(function (handles) {
+                browser.switchTo().window(handles[1]).then(function () {
+                    //do your stuff on the pop up window
+                    element(by.css("input[class='whsOnd zHQkBf']")).sendKeys('sergos0617@gmail.com');
+                    element(by.css("content[class='CwaK9']")).click();
                 });
             });
 
-        }); */
+           
+            /* var handlePromise = browser.getAllWindowHandles();
+            handlePromise.then(function (handles) {
+                var popUpHandle = handles[1];
+                browser.switchTo().window(popUpHandle);
+                var popUpHandleFinal = browser.getWindowHandle();
+                expect(popUpHandleFinal).toEqual(popUpHandle);
+                
+            }); */
+
+
+        });
+
+
+
+
+
     });
 });

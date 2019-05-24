@@ -3,8 +3,10 @@ function getSearch() {
     this.URL = function () {
         browser.get('https://www.google.com/');
     };
-    this.submit = element.all(by.css("ul[class='h-c-header__cta-list h-c-header__cta-list--tier-two']"))
-    .all(by.css("li[class='h-c-header__nav-li-link']"));
+    this.submit  = element(by.linkText("Acceder"));
+
+    
+
 }
 
 module.exports = new getSearch();
