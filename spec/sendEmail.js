@@ -21,52 +21,18 @@ describe('Login into Gmail', function () {
         item.searchItem.click();
         item.submit.click();
         browser.getAllWindowHandles().then(function (handles) {
-            browser.switchTo().window(handles[1]).then(function () {
-                browser.getTitle().then(function (title) {
-                    console.log('title before: ' + title);
-                    item.input.sendKeys('sergos0617@gmail.com');
+            browser.switchTo().window(handles[1]);
+            browser.sleep(3000).then(function () {
+                item.input.sendKeys('@gmail.com');
+                item.next.click();
+                browser.sleep(3000).then(function () {
+                    item.input.sendKeys('xxxxxx');
                     item.next.click().then(function () {
-                        item.input.sendKeys('Colombia17@');
-                        item.next.click();
-
-                    })
-
+                        var LoginURL = browser.getCurrentUrl();
+                        expect(LoginURL).toContain('mail');
+                    });
                 });
-                
             });
         });
-
-
-
-
-
-        /* browser.getTitle().then(function (title) {
-            console.log('title before: ' + title);
-        });
-         browser.getAllWindowHandles().then(function (handles) {
-            browser.switchTo().window(handles[1]).then(function () {
-                //do your stuff on the pop up window
-                element(by.css("input[class='whsOnd zHQkBf']")).sendKeys('sergos0617@gmail.com');
-                element(by.css("content[class='CwaK9']")).click();
-            });
-        }); */
-
-
-        /* var handlePromise = browser.getAllWindowHandles();
-        handlePromise.then(function (handles) {
-            var popUpHandle = handles[1];
-            browser.switchTo().window(popUpHandle);
-            var popUpHandleFinal = browser.getWindowHandle();
-            expect(popUpHandleFinal).toEqual(popUpHandle);
-            
-        }); */
-
-
-
-
-
-
-
-
     });
 });
