@@ -22,11 +22,11 @@ describe('Login into Gmail', function () {
         item.submit.click();
         browser.getAllWindowHandles().then(function (handles) {
             browser.switchTo().window(handles[1]);
-            browser.sleep(3000).then(function () {
-                item.input.sendKeys('@gmail.com');
+            browser.sleep(2000).then(function () {
+                item.input.sendKeys('example@gmail.com');
                 item.next.click();
-                browser.sleep(3000).then(function () {
-                    item.input.sendKeys('xxxxxx');
+                browser.sleep(2000).then(function () {
+                    item.input.sendKeys('example');
                     item.next.click().then(function () {
                         var LoginURL = browser.getCurrentUrl();
                         expect(LoginURL).toContain('mail');
@@ -34,5 +34,36 @@ describe('Login into Gmail', function () {
                 });
             });
         });
+    });
+});
+
+describe('Sending an email', function () {
+    beforeEach(function () {
+        browser.executeScript('window.sessionStorage.clear();');
+        browser.executeScript('window.localStorage.clear();');
+    })
+    var item = require('../pageObject/jsObject.js');
+
+    it('should see a confirmation message', function () {
+        browser.sleep(9000).then(function () {
+            element(by.css("div[class='T-I J-J5-Ji T-I-KE L3']")).click().then(function () {
+                  item.address.sendKeys('sergio.ospina@yuxi.com');
+                item.subject.sendKeys('something');
+                item.description.sendKeys('something');
+
+
+
+
+
+
+
+
+
+            })
+
+
+        })
+
+
     });
 });
