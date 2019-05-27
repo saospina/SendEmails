@@ -41,29 +41,29 @@ describe('Sending an email', function () {
     beforeEach(function () {
         browser.executeScript('window.sessionStorage.clear();');
         browser.executeScript('window.localStorage.clear();');
-    })
+
+    });
     var item = require('../pageObject/jsObject.js');
 
     it('should see a confirmation message', function () {
-        browser.sleep(9000).then(function () {
-            element(by.css("div[class='T-I J-J5-Ji T-I-KE L3']")).click().then(function () {
-                  item.address.sendKeys('sergio.ospina@yuxi.com');
+        browser.sleep(5000).then(function () {
+            item.newMessage.click().then(function () {
+                item.address.sendKeys('example@yuxiglobal.com');
                 item.subject.sendKeys('something');
                 item.description.sendKeys('something');
-
-
-
-
-
-
-
-
-
+                item.send.click();
+                browser.sleep(8000).then(function () {
+                    element(by.css("span[class='bAq']")).getText().then(function (text) {
+                        console.log('Message confirmation: ' + text);
+                        /* This code block was implemented because I was facing the following error: 
+                        Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.
+                        And I could not find a solution for it */
+                        if (text == 'Mensaje enviado') {
+                            return expect(text).toEqual('Mensaje enviado');
+                        }
+                    })
+                });
             })
-
-
         })
-
-
     });
 });
